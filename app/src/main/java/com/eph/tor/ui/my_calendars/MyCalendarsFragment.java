@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,13 +24,7 @@ public class MyCalendarsFragment extends Fragment {
         myCalendarsViewModel =
                 ViewModelProviders.of(this).get(MyCalendarsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my_calendars, container, false);
-        final TextView textView = root.findViewById(R.id.text_my_calendars);
-        myCalendarsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        final CalendarView calendarView = root.findViewById(R.id.myCalendarView);
         return root;
     }
 }

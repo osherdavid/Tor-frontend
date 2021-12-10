@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.my_calendars.MyCalendarsFragment">
 
-    <CalendarView
-        android:id="@+id/myCalendarView"
-        android:layout_width="414dp"
-        android:layout_height="339dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.eph.tor.TorCalendar
+        android:id="@+id/my_calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:selectionColor="@color/colorPrimaryDark"
+        app:selectionLabelColor="@color/colorPrimaryDark" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,4 +1,4 @@
-package com.eph.tor.ui.notifications;
+package com.eph.tor.ui.direct_messages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.eph.tor.R;
 
-public class NotificationsFragment extends Fragment {
+public class DirectMessagesFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private DirectMessagesViewModel directMessagesViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        directMessagesViewModel =
+                ViewModelProviders.of(this).get(DirectMessagesViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_direct_messages, container, false);
+        final TextView textView = root.findViewById(R.id.text_direct_messages);
+        directMessagesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

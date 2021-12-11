@@ -1,30 +1,32 @@
 package com.eph.tor.ui.my_calendars;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
 import com.applandeo.materialcalendarview.CalendarView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+
 
 import com.eph.tor.R;
+import com.eph.tor.TorCalendar;
 
 public class MyCalendarsFragment extends Fragment {
 
-    private MyCalendarsViewModel myCalendarsViewModel;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        myCalendarsViewModel =
-                ViewModelProviders.of(this).get(MyCalendarsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my_calendars, container, false);
-        final CalendarView calendarView = root.findViewById(R.id.my_calendar_view);
+        TorCalendar calendarView = root.findViewById(R.id.my_calendar_view);
+        LinearLayout scrollViewLinearLayout = root.findViewById(R.id.my_calendars_scroll_view_linear_layout);
+        calendarView.setAppointmentsLinearLayout(scrollViewLinearLayout);
         return root;
     }
 }

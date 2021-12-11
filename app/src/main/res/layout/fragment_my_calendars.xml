@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:selectionColor="@color/colorPrimaryDark"
-        app:selectionLabelColor="@color/colorPrimaryDark" />
+        app:headerColor="@color/colorPrimary"
+        app:todayLabelColor="@color/colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

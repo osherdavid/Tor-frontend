@@ -1,12 +1,15 @@
 package com.eph.tor;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
@@ -22,21 +25,22 @@ public class TorCalendar extends CalendarView implements OnDayClickListener{
     private List<EventDay> appointments;
     public List<EventDay> appointmentsForChosenDay;
     private LinearLayout appointmentsLinearLayout;
+    private AppointmentCardView appointmentsTemplate;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public TorCalendar(Context context, AttributeSet attrs) throws OutOfDateRangeException {
         super(context, attrs);
         this.appointments = new ArrayList<>();
         this.appointmentsForChosenDay = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             this.appointments.add(new Appointment(Calendar.getInstance(), 16, 16, "driver" + i, "driving lesson"));
         }
         this.setCurrentDate();
         this.displayEvents();
         this.setOnDayClickListener(this);
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setAppointmentsTemplate(AppointmentCardView appointmentsTemplate) {
+        this.appointmentsTemplate = appointmentsTemplate;
+    }
     public void setAppointmentsLinearLayout(LinearLayout linearLayout) {
         this.appointmentsLinearLayout = linearLayout;
         this.updateLinearLayout();
@@ -47,7 +51,6 @@ public class TorCalendar extends CalendarView implements OnDayClickListener{
         this.invalidate();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onDayClick(EventDay eventDay) {
         Calendar clickedCalendar = eventDay.getCalendar();
@@ -56,13 +59,14 @@ public class TorCalendar extends CalendarView implements OnDayClickListener{
         this.invalidate();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void updateLinearLayout() {
         this.appointmentsLinearLayout.removeAllViews();
         if(this.appointmentsLinearLayout != null) {
             for (EventDay appointment : this.appointmentsForChosenDay) {
-                this.appointmentsLinearLayout.addView((((Appointment) appointment).createTextViewForContext(
-                        this.appointmentsLinearLayout.getContext())));
+                AppointmentCardView appointmentCard = new AppointmentCardView(this.appointmentsLinearLayout.getContext());
+                appointmentCard.SetAppointment((Appointment) appointment);
+                this.appointmentsLinearLayout.addView(appointmentCard);
+
             }
         }
     }

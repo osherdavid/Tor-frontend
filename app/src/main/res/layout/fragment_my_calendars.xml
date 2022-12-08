@@ -18,9 +18,10 @@
         app:todayLabelColor="@color/colorPrimary"
         app:datePicker="true"/>
 
+
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,8 +34,46 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"/>
+            android:paddingHorizontal="10dp"
+            android:gravity="center">
+            <!--com.eph.tor.AppointmentCardView
+                android:id="@+id/appointment_card_base"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="10dp"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/colorAccent"
+                app:cardCornerRadius="50dp"
+                app:cardPreventCornerOverlap="true">
+
+                <LinearLayout
+                    android:id="@+id/appointment_card_base_horizontal_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:baselineAligned="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/appointment_card_base_vertical_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hello!"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </com.eph.tor.AppointmentCardView-->
+        </LinearLayout>
     </ScrollView>
+
 
 </LinearLayout>
 

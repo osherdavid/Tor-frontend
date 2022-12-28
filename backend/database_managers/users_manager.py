@@ -13,6 +13,8 @@ class UserManager(object):
     def verify_user(self, username, password):
         res = self.db.get_from_table(UserCredential.__name__, username=username)
         print(res)
+        if len(res) == 0:
+            return False
         user = UserCredential(*res[0])
         print(user, password)
         return user.password == password

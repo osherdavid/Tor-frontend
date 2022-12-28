@@ -1,32 +1,24 @@
 package com.eph.tor.ui.login;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.eph.tor.AccountDetails;
+import com.eph.tor.CallBackFunction;
 import com.eph.tor.MainActivity;
 import com.eph.tor.R;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+import java.io.IOException;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, CallBackFunction {
 
     EditText usernameEditText;
     EditText passwordEditText;
@@ -52,30 +44,47 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login:
-                LogIn();
+                try {
+                    LogIn();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
         }
     }
 
-    public void LogIn(){
+    public void LogIn() throws IOException {
         usernameErrorText.setText("");
         passwordErrorText.setText("");
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         if(username.equals("")) {
             this.usernameErrorText.setText(R.string.enter_username_error);
+            return;
         }
         if(password.equals("")) {
             this.passwordErrorText.setText(R.string.enter_password_error);
+            return;
         }
+        verifyAccount(username, password);
+    }
 
-        if(verifyAccount(username, password)) {
+    private void verifyAccount(String username, String password) {
+        AccountDetails ad = new AccountDetails(username, password);
+        ad.setCallback(this);
+        ad.start();
+    }
+
+    @SafeVarargs
+    @Override
+    public final <T> void callback(T... values) {
+        boolean isVerified = values[0].equals(true);
+        if (isVerified) {
             Intent switchActivityIntent = new Intent(this, MainActivity.class);
             startActivity(switchActivityIntent);
             finish();
         }
-    }
-
-    private boolean verifyAccount(String username, String password) {
-        return username.equals("Admin") && password.equals("admin");
+        else {
+            System.out.println("Not Verified!");
+        }
     }
 }

@@ -1,3 +1,4 @@
+import traceback
 from flask import Flask
 from database_managers.users_manager import UserManager
 from sqlite3 import IntegrityError
@@ -14,7 +15,8 @@ except IntegrityError:
 
 @app.route("/users/<username>/<password>")
 def verify_user(username, password):
-    return json.dumps(user_manager.verify_user(username, password))
+    res = json.dumps(user_manager.verify_user(username, password))
+    return res
 
 
 @app.route("/")

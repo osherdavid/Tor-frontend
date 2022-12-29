@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/login_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -21,52 +21,53 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <Button
+        <ImageButton
             android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
             android:enabled="true"
-            android:text="@string/action_log_in"
+            android:src="@drawable/ic_baseline_input_24"
+            android:background="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+            app:layout_constraintTop_toBottomOf="@+id/login_error" />
 
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="64dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/login"
-            app:layout_constraintEnd_toEndOf="@+id/cardView2"
-            app:layout_constraintStart_toStartOf="@+id/cardView2"
-            app:layout_constraintTop_toBottomOf="@id/cardView2"
-            app:layout_constraintVertical_bias="0.3" />
+            <ProgressBar
+                android:id="@+id/login_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/cardView3"
+                app:layout_constraintStart_toStartOf="@+id/cardView3"
+                app:layout_constraintTop_toBottomOf="@id/cardView3"
+                android:indeterminateTint="#FFFFFF"
+                android:progressTint="#FFFFFF" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="148dp"
             android:layout_height="160dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_popup_disk_full" />
+            app:srcCompat="@drawable/tor_logo_inverse_white" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:padding="10dp"
-            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,40 +86,56 @@
                     android:hint="@string/prompt_username"
                     android:inputType="textEmailAddress"
                     android:selectAllOnFocus="true"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/password"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/username_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    app:layout_constraintEnd_toEndOf="@+id/username"
+                    app:layout_constraintStart_toStartOf="@+id/username"
+                    app:layout_constraintTop_toBottomOf="@+id/username"
+                    android:textColor="@color/colorError"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="10dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            android:layout_marginHorizontal="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="47dp"
-                    android:layout_marginBottom="16dp"
                     android:hint="@string/prompt_password"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:selectAllOnFocus="true"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginHorizontal="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/username"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@id/username"
-                    app:layout_constraintTop_toBottomOf="@+id/username" />
-
-                <TextView
-                    android:id="@+id/username_error"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="@+id/username"
-                    app:layout_constraintStart_toStartOf="@+id/username"
-                    app:layout_constraintTop_toBottomOf="@+id/username"
-                    android:textColor="@color/colorError"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/password_error"
@@ -131,7 +148,17 @@
                     android:textColor="@color/colorError"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
+            <TextView
+                android:id="@+id/login_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textColor="@color/colorError"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView3" />
         <TextView
             android:id="@+id/sign_in_here"
             android:layout_width="wrap_content"

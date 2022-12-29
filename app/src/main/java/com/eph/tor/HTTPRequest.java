@@ -5,12 +5,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
 
 public abstract class HTTPRequest extends Thread {
     private String baseServerAddress = "http://192.168.1.17:5000";
     protected String optionalUrl = "";
     private int timeout = 5000;
     protected CallBackFunction callback = null;
+    protected CallBackFunction cleanup = null;
 
     public abstract <T> boolean task(String result);
 
@@ -40,6 +42,9 @@ public abstract class HTTPRequest extends Thread {
             }
         } catch (IOException e) {
             System.err.println("Error connecting to the server: " + e.getMessage());
+            if (this.cleanup != null) {
+                this.cleanup.callback(e);
+            }
         }
     }
 }

@@ -16,6 +16,11 @@ public class AccountDetails extends HTTPRequest {
     public void setCallback(CallBackFunction callBackFunction) {
         this.callback = callBackFunction;
     }
+
+    public void setCleanup(CallBackFunction cleanupFunction) {
+        this.cleanup = cleanupFunction;
+    }
+
     @Override
     public <T> boolean task(String result) {
         this.isVerified = Boolean.parseBoolean(result);

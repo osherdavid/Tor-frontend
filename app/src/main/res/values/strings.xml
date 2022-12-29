@@ -16,4 +16,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="enter_username_error">"You must provide an username"</string>
     <string name="enter_password_error">"You must provide a password"</string>
+    <string name="user_invalid">"User name or password are incorrect"</string>
+    <string name="connection_error">"Could not connect to server"</string>
 </resources>

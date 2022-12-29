@@ -7,6 +7,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_username">User Name</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_repeat_password">Repeat Password</string>
     <string name="action_log_in">Log in</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -17,5 +18,8 @@
     <string name="enter_username_error">"You must provide an username"</string>
     <string name="enter_password_error">"You must provide a password"</string>
     <string name="user_invalid">"User name or password are incorrect"</string>
-    <string name="connection_error">"Could not connect to server"</string>
+    <string name="connection_error">"Could not get response from server"</string>
+    <string name="password_does_not_match">"Password does not match"</string>
+    <string name="user_exists_error">"User already exists</string>
+    <string name="signin_error">"Could not sign in</string>
 </resources>

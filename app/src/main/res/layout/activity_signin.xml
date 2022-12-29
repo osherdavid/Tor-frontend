@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signin_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.SigninActivity">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/signin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="48dp"
+                android:enabled="true"
+                android:src="@drawable/ic_baseline_input_24"
+                android:background="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signin_error" />
+
+            <ProgressBar
+                android:id="@+id/signin_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/repeat_password_signin_cardview"
+                app:layout_constraintStart_toStartOf="@+id/repeat_password_signin_cardview"
+                app:layout_constraintTop_toBottomOf="@id/repeat_password_signin_cardview"
+                android:indeterminateTint="#FFFFFF"
+                android:progressTint="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/signin_success"
+                android:layout_width="142dp"
+                android:layout_height="98dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:indeterminateTint="#FFFFFF"
+                android:progressTint="#FFFFFF"
+                android:src="@drawable/ic_baseline_check_circle_outline_24"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/repeat_password_signin_cardview"
+                app:layout_constraintStart_toStartOf="@+id/repeat_password_signin_cardview"
+                app:layout_constraintTop_toBottomOf="@id/repeat_password_signin_cardview" />
+
+            <ImageView
+                android:id="@+id/signin_logo"
+                android:layout_width="148dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/tor_logo_inverse_white" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/username_signin_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:padding="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signin_logo"
+                android:layout_marginHorizontal="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/username_signin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:hint="@string/prompt_username"
+                        android:inputType="textEmailAddress"
+                        android:selectAllOnFocus="true"
+                        android:textColor="@color/colorPrimary"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/username_error_signin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        app:layout_constraintEnd_toEndOf="@+id/username_signin"
+                        app:layout_constraintStart_toStartOf="@+id/username_signin"
+                        app:layout_constraintTop_toBottomOf="@+id/username_signin"
+                        android:textColor="@color/colorError"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/password_signin_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:padding="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/username_signin_view"
+                android:layout_marginHorizontal="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/password_signin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_password"
+                        android:inputType="textPassword"
+                        android:selectAllOnFocus="true"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginHorizontal="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/password_error_signin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        app:layout_constraintEnd_toEndOf="@+id/password_signin"
+                        app:layout_constraintStart_toStartOf="@+id/password_signin"
+                        app:layout_constraintTop_toBottomOf="@+id/password_signin"
+                        android:textColor="@color/colorError"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/repeat_password_signin_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:padding="10dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_signin_cardview"
+                android:layout_marginHorizontal="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/repeat_password"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_repeat_password"
+                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:inputType="textPassword"
+                        android:selectAllOnFocus="true"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginHorizontal="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/repeat_password_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        app:layout_constraintEnd_toEndOf="@+id/repeat_password"
+                        app:layout_constraintStart_toStartOf="@+id/repeat_password"
+                        app:layout_constraintTop_toBottomOf="@+id/repeat_password"
+                        android:textColor="@color/colorError"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/signin_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textColor="@color/colorError"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/repeat_password_signin_cardview" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

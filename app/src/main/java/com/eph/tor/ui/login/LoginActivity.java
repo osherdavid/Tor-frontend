@@ -1,7 +1,6 @@
 package com.eph.tor.ui.login;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
@@ -9,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -20,8 +18,6 @@ import com.eph.tor.AccountDetails;
 import com.eph.tor.CallBackFunction;
 import com.eph.tor.MainActivity;
 import com.eph.tor.R;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -35,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ImageButton loginButton;
     TextView singInHere;
     TextView loginError;
+    AccountDetails accountDetails;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         layoutRoot.setBackground(gradientDrawable);
 
         usernameEditText = findViewById(R.id.username);
+        usernameEditText.requestFocus();
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.login);
         loadingProgressBar = findViewById(R.id.login_loading);
@@ -58,6 +56,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         singInHere = findViewById(R.id.sign_in_here);
         loginError = findViewById(R.id.login_error);
         loginButton.setOnClickListener(this);
+        singInHere.setOnClickListener(this);
+        accountDetails = null;
     }
 
     @Override
@@ -69,6 +69,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                break;
+            case R.id.sign_in_here:
+                Intent switchActivityIntent = new Intent(this, SigninActivity.class);
+                startActivity(switchActivityIntent);
+                finish();
+                break;
         }
     }
 
@@ -89,10 +95,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void verifyAccount(String username, String password) {
-        AccountDetails ad = new AccountDetails(username, password);
-        ad.setCallback(this);
-        ad.setCleanup(this);
-        ad.start();
+        this.accountDetails = new AccountDetails(username, password);
+        this.accountDetails.setCallback(this);
+        this.accountDetails.setCleanup(this);
+        this.accountDetails.Verify();
         loading(true);
     }
 
@@ -119,14 +125,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (values[0] instanceof IOException) {
                 errorMessage = getResources().getString(R.string.connection_error);
             }
-            else {
+        }
+        System.out.println("Operation: " + this.accountDetails.operation);
+        if((this.accountDetails.operation == AccountDetails.Operation.VERIFY)){
+            if (values.length == 1) {
                 isVerified = values[0].equals(true);
             }
         }
         if (isVerified) {
             Intent switchActivityIntent = new Intent(this, MainActivity.class);
             startActivity(switchActivityIntent);
-            finish();
         }
         else {
             System.out.println("Not Verified!");

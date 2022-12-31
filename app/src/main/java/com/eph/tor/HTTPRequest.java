@@ -16,7 +16,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public abstract class HTTPRequest extends Thread {
-    private String baseServerAddress = "http://192.168.1.17:5000";
+    private String baseServerAddress = "http://tor-backend.oa.r.appspot.com";
     protected String optionalUrl = "";
     private int timeout = 5000;
     protected CallBackFunction callback = null;
@@ -57,7 +57,7 @@ public abstract class HTTPRequest extends Thread {
                 }
             }
             else {
-                throw new IOException();
+                throw new IOException("Got Error: " + responseCode);
             }
         } catch (IOException e) {
             System.err.println("Error connecting to the server: " + e.getMessage());

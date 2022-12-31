@@ -41,7 +41,7 @@ public class AccountDetails extends HTTPRequest {
     }
 
     public void SignIn() {
-        this.optionalUrl = "/users/"+this.username+"/"+password;
+        this.optionalUrl = "/users";
         this.operation = Operation.SGININ;
         this.postParams = "{\"username\":\""+this.username+"\",\"password\":\""+this.password+"\"}";
         this.requestType = "POST";
@@ -52,6 +52,7 @@ public class AccountDetails extends HTTPRequest {
     public <T> boolean task(String result) {
         this.isVerified = Boolean.parseBoolean(result);
         System.out.println("run: "+ result);
+        System.out.println("Parsed result: " + Boolean.parseBoolean(result));
         return this.isVerified;
     }
 

@@ -4,6 +4,7 @@ package com.eph.tor;
 import java.security.MessageDigest;
 
 public class AccountDetails extends HTTPRequest {
+
     public static enum Operation {
             VERIFY, DOES_USER_EXIST, SGININ
     }
@@ -11,6 +12,10 @@ public class AccountDetails extends HTTPRequest {
     private String password;
     private boolean isVerified;
     public Operation operation;
+
+    public AccountDetails(AccountDetails accountDetails) {
+        this(accountDetails.username, accountDetails.password);
+    }
 
     public AccountDetails(String username, String password) {
         this.username = username;

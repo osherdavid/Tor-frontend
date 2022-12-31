@@ -13,10 +13,6 @@ public class AccountDetails extends HTTPRequest {
     private boolean isVerified;
     public Operation operation;
 
-    public AccountDetails(AccountDetails accountDetails) {
-        this(accountDetails.username, accountDetails.password);
-    }
-
     public AccountDetails(String username, String password) {
         this.username = username;
         this.password = calculateHash(password);
@@ -31,7 +27,12 @@ public class AccountDetails extends HTTPRequest {
         this.cleanup = cleanupFunction;
     }
 
+    public void WaitToFinishPreviousTask() {
+        this.interrupt();
+    }
+
     public void Verify() {
+        this.WaitToFinishPreviousTask();
         this.optionalUrl = "/users/"+this.username+"/"+password;
         this.operation = Operation.VERIFY;
         this.requestType = "GET";
@@ -39,6 +40,7 @@ public class AccountDetails extends HTTPRequest {
     }
 
     public void doesUserExists() {
+        this.WaitToFinishPreviousTask();
         this.optionalUrl = "/users/"+this.username;
         this.operation = Operation.DOES_USER_EXIST;
         this.requestType = "GET";
@@ -46,6 +48,7 @@ public class AccountDetails extends HTTPRequest {
     }
 
     public void SignIn() {
+        this.WaitToFinishPreviousTask();
         this.optionalUrl = "/users";
         this.operation = Operation.SGININ;
         this.postParams = "{\"username\":\""+this.username+"\",\"password\":\""+this.password+"\"}";

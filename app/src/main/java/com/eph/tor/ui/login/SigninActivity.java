@@ -90,7 +90,6 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
                 if (values[0].equals(true)) {
                     errorMessage = getResources().getString(R.string.user_exists_error);
                 } else {
-                    AccountDetails temp_ad = new AccountDetails(this.accountDetails);
                     this.accountDetails.SignIn();
                     return;
                 }
